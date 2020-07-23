@@ -132,6 +132,11 @@ class _LogInPageState extends State<LogInPage> {
             setState(() {
               _pagestate = 0;
             });
+            FocusScopeNode currentFocus = FocusScope.of(context);
+
+            if (!currentFocus.hasPrimaryFocus) {
+              currentFocus.unfocus();
+            }
           },
           child: AnimatedContainer(
             curve: Curves.fastLinearToSlowEaseIn,
@@ -168,9 +173,16 @@ class _LogInPageState extends State<LogInPage> {
             ),
           ),
         ),
-        Column(
-          children: <Widget>[
-            AnimatedContainer(
+        GestureDetector(
+          onTap: () {
+            FocusScopeNode currentFocus = FocusScope.of(context);
+
+            if (!currentFocus.hasPrimaryFocus) {
+              currentFocus.unfocus();
+            }
+          },
+          child: AnimatedContainer(
+              padding: EdgeInsets.all(50),
               duration: Duration(milliseconds: 1000),
               curve: Curves.fastLinearToSlowEaseIn,
               transform: Matrix4.translationValues(0, _registerYoffset, 0),
@@ -180,13 +192,74 @@ class _LogInPageState extends State<LogInPage> {
                     topLeft: Radius.circular(25),
                     topRight: Radius.circular(25),
                   )),
-              // child: TextField(
-              //   decoration: InputDecoration(hintText: 'Username'),
-              // ),
-            ),
-          ],
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      TextField(
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.fromLTRB(30, 10, 0, 10),
+                            border: InputBorder.none,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                            hintText: 'USERNAME'),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextField(
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.fromLTRB(30, 10, 0, 10),
+                            border: InputBorder.none,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50))),
+                            hintText: 'Password'),
+                        obscureText: true,
+                      ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                  LoginButton(),
+                  SizedBox(height: 20),
+                ],
+              )),
         ),
       ],
     );
+  }
+}
+
+class LoginButton extends StatefulWidget {
+  @override
+  _LoginButtonState createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<LoginButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 150.0,
+        decoration: BoxDecoration(
+            color: Colors.deepPurple, borderRadius: BorderRadius.circular(25)),
+        padding: EdgeInsets.all(20),
+        child: Center(
+          child: Text('LOG IN',
+              style: TextStyle(color: Colors.white, fontSize: 16)),
+        ));
   }
 }
