@@ -36,6 +36,8 @@ class _LogInPageState extends State<LogInPage> {
   double windowheight = 0;
   double windowwidth = 0;
 
+  bool checked = false;
+
   @override
   Widget build(BuildContext context) {
     windowheight = MediaQuery.of(context).size.height;
@@ -57,7 +59,9 @@ class _LogInPageState extends State<LogInPage> {
         Container(
           child: Column(
             children: <Widget>[
-              Container(child: Image.asset('assets/images/bg.jpg')),
+              Container(
+                  padding: EdgeInsets.only(top: 30),
+                  child: Image.asset('assets/images/bg.jpg')),
               Container(
                 padding: EdgeInsets.fromLTRB(110, 20, 110, 20),
                 child: Image.asset('assets/images/logo.PNG'),
@@ -77,24 +81,24 @@ class _LogInPageState extends State<LogInPage> {
                     Text(
                       'Welcome to',
                       style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 26,
+                          // fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
                     SizedBox(height: 20),
                     Text(
                       'MY',
                       style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          // fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
                     SizedBox(height: 10),
                     Text(
                       'CLASSROOM',
                       style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          // fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
                   ],
@@ -111,14 +115,16 @@ class _LogInPageState extends State<LogInPage> {
                   },
                   child: Container(
                     padding: EdgeInsets.all(10),
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width * 0.4,
                     decoration: BoxDecoration(
-                        color: Colors.indigo[400],
-                        borderRadius: BorderRadius.circular(50)),
+                      border: Border.all(width: 1.0, color: Colors.white),
+                      color: Colors.indigo[400],
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                     child: Center(
                       child: Text(
                         'SIGN IN',
-                        style: TextStyle(color: Colors.white, fontSize: 22),
+                        style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),
                   ),
@@ -234,8 +240,30 @@ class _LogInPageState extends State<LogInPage> {
                       SizedBox(height: 20),
                     ],
                   ),
-                  LoginButton(),
-                  SizedBox(height: 20),
+                  //TODO : Add onTap Login function here
+                  GestureDetector(
+                    child: LoginButton(),
+                    onTap: () {},
+                  ),
+                  //TODO : Add remember me script
+                  CheckboxListTile(
+                    title: Text('Remember Me'),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    value: checked,
+                    onChanged: (bool value) {
+                      setState(() {
+                        checked = value;
+                      });
+                    },
+                  ),
+                  InkWell(
+                    child: Text(
+                      'Forgot User Name/Password?',
+                    ),
+                    onTap: () => {
+                      //TODO: add Forgot username/password URL here
+                    },
+                  ),
                 ],
               )),
         ),
@@ -256,7 +284,7 @@ class _LoginButtonState extends State<LoginButton> {
         width: 150.0,
         decoration: BoxDecoration(
             color: Colors.deepPurple, borderRadius: BorderRadius.circular(25)),
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(15),
         child: Center(
           child: Text('LOG IN',
               style: TextStyle(color: Colors.white, fontSize: 16)),
