@@ -1,3 +1,4 @@
+import 'package:NMMC/screens/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,9 +14,15 @@ class MyApp extends StatelessWidget {
         body: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.pink[200], Colors.indigo[900]])),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.purple[400],
+                Colors.purple[600],
+                Colors.indigo[700],
+                Colors.indigo[900]
+              ],
+            )),
             child: LogInPage()),
       ),
     );
@@ -149,11 +156,15 @@ class _LogInPageState extends State<LogInPage> {
             duration: Duration(milliseconds: 1000),
             transform: Matrix4.translationValues(0, _loginYoffset, 0),
             decoration: BoxDecoration(
-              color: Colors.indigo,
               gradient: LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: [Colors.indigo[900], Colors.pink[200]]),
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.purple[400],
+                    Colors.indigo[500],
+                    Colors.indigo[600],
+                    Colors.indigo[900]
+                  ]),
             ),
             child: Column(
               children: <Widget>[
@@ -243,7 +254,10 @@ class _LogInPageState extends State<LogInPage> {
                   //TODO : Add onTap Login function here
                   GestureDetector(
                     child: LoginButton(),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    },
                   ),
                   //TODO : Add remember me script
                   CheckboxListTile(
