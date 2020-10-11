@@ -1,10 +1,10 @@
 # NMMC
 
-This is my first Flutter project.
+This is NMMC School project.
 
 ## Getting Started
 
-Steps to install and test will be added soon :)
+You can find the ready application on Playstore soon :)
 
 Thanks !
 Sam Sapiol
